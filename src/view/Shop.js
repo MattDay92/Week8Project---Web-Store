@@ -13,8 +13,8 @@ export default class Shop extends Component {
   getItems = async () => {
     const res = await fetch('http://127.0.0.1:5000/api/shop');
     const data = await res.json();
-    console.log(data)
-    this.setState({ items: data });
+    // console.log(data)
+    this.setState({ items: data.items });
   };
 
   componentDidMount = () => {
@@ -24,19 +24,20 @@ export default class Shop extends Component {
 
   showItems = () => {
     if (this.state.items.length > 0) {
-      const stuff = this.state.items.map(i => <Link key={i.id} to={`/shop/${i.id}`} ><Item itemInfo={i} /></Link>)
-      return stuff}
+      return this.state.items.map(i => <div className='col-3' key={i.id} to={`/shop/${i.id}`} ><Item itemInfo={i} /></div>)
+      }
   };
 
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <h1 className="text-center my-3">Welcome to the Bike Shop!</h1>
         <h4 className="text-center my-3">Pedal Towards Savings Today!</h4>
         {console.log(this.state.items, 'rendered')}
+        <div className='row'>
         {this.showItems()}
-       
+        </div>       
       </div>
     )
   }
