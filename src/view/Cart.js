@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import Item from '../component/Item';
 
 export default function Cart() {
-    const [cart, setCart] = useState([])
+    const { myCart } = useParams()
+    const { user } = useParams()
+    const [cart, setCart] = useState()
+
 
     const getCart = async () => {
         const res = await fetch('http://127.0.0.1:5000/api/mycart');
@@ -19,7 +23,7 @@ export default function Cart() {
 
     const showCart = () => {
         if (cart.length > 0) {
-            return cart.map(i => <div className='col-3' key={i.id} to={`/cart/${i.id}`} ><Item itemInfo={i} /></div>)
+            return cart.map(i => <div className='col-3' key={i.id} to={`/shop/${i.id}`} ><Item itemInfo={i} /></div>)
         }
     };
 

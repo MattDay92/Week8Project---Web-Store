@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Item from './component/Item';
 import Nav from './component/Nav';
@@ -11,20 +11,32 @@ import SingleItem from './view/SingleItem';
 
 export default function App() {
   const [myCart, setMyCart] = useState([]);
+  const [user, setUser] = useState([])
+
+  const logMeIn = (user) => {
+    setUser(user)
+  };
+  const logMeOut = () => {
+    setUser({})
+  };
+
+  // const addToCart = () => {
+  //   setMyCart(myCart + {item.id})
+  // };
 
 
   return (
     <div>
       <BrowserRouter>
-      <Nav />
-      <Routes>
-        <Route path='/shop' element={<Shop />} />
-        <Route path='/cart/:itemID' element={<Cart myCart={myCart} />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/shop/:itemID' element={<Item />} />
-        <Route path='/shop/singleitem/:itemID' element={<SingleItem />} />
-      </Routes>
+        <Nav user={user} logMeOut={logMeOut} />
+        <Routes>
+          <Route path='/shop' element={<Shop a />} />
+          <Route path='/cart' element={<Cart myCart={myCart} user={user} />} />
+          <Route path='/login' element={<Login logMeIn={logMeIn} />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/shop/:itemID' element={<Item />} />
+          <Route path='/shop/singleitem/:itemID' element={<SingleItem />} />
+        </Routes>
 
       </BrowserRouter>
     </div>

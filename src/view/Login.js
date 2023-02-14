@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Navigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Login({logMeIn}) {
     const [redirect, setRedirect] = useState(false);
 
     const handleSubmit = async (event) => {
@@ -14,17 +14,18 @@ export default function Login() {
         const options = {
             method: "POST",
             headers: {
-                Authorization: `Basic ${btoa(username+`:`+password)}`
+                Authorization: `Basic ${btoa(username+':'+password)}`
             }
         }
     
-        console.log(url, options)
+        console.log(url, options.headers.Authorization)
         console.log(username, password)
         
         const res = await fetch(url, options);
         const data = await res.json();
         console.log(data)
         if (data.status==='ok'){
+            logMeIn(data.user)
             setRedirect(true)
         }
     };

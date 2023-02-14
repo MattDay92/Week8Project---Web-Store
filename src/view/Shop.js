@@ -1,5 +1,4 @@
 import React, { Component, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
 import Item from '../component/Item';
 
 export default class Shop extends Component {
@@ -13,7 +12,7 @@ export default class Shop extends Component {
   getItems = async () => {
     const res = await fetch('http://127.0.0.1:5000/api/shop');
     const data = await res.json();
-    // console.log(data)
+    console.log(data)
     this.setState({ items: data.items });
   };
 

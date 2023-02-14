@@ -6,7 +6,7 @@ export default function SingleItem() {
     const [item, setItem] = useState([])
 
     const getItem = async () => {
-        const url = `http://127.0.0.1:5000/api/shop/6`
+        const url = `http://127.0.0.1:5000/api/shop/7`
         const res = await fetch(url);
         const data = await res.json();
         console.log(data)

@@ -56,7 +56,7 @@ function Nav() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            The Bike Shop
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
