@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import Item from '../component/Item';
 
-export default function Cart() {
-    const { myCart } = useParams()
-    const { user } = useParams()
-    const [cart, setCart] = useState()
+export default function Cart({myCart, user}) {
 
 
     const getCart = async () => {
