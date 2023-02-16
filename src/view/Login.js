@@ -31,7 +31,7 @@ export default function Login({logMeIn}) {
     };
     
 
-    return redirect?<Navigate to='/shop' />:
+    return redirect?<Navigate to='/' />:
     (
         <div className='text-center my-5'>
             <h1>Log In</h1>

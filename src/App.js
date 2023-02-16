@@ -11,7 +11,7 @@ import SingleItem from './view/SingleItem';
 
 export default function App() {
   const [myCart, setMyCart] = useState([]);
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState({})
 
   const logMeIn = (user) => {
     setUser(user)
@@ -24,17 +24,39 @@ export default function App() {
   //   setMyCart(myCart + {item.id})
   // };
 
+  const getCart = async (user) => {
+    if (user.apitoken) {
+      const options = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${user.apitoken}`
+        }
+      }
+
+      const res = await fetch('http://127.0.0.1:5000/api/mycart', options);
+      const data = await res.json();
+      console.log(data)
+      setMyCart(data);
+    }else{
+      setMyCart([])
+    }
+  };
+
+  useEffect(() => {
+    getCart(user)
+  }, [user])
+
 
   return (
     <div>
       <BrowserRouter>
         <Nav user={user} logMeOut={logMeOut} />
         <Routes>
-          <Route path='/shop' element={<Shop a />} />
-          <Route path='/cart' element={<Cart myCart={myCart} user={user} />} />
+          <Route path='/' element={<Shop  user={user} />} />
+          <Route path='/cart' element={<Cart myCart={myCart} user={user} getCart={getCart} setMyCart={setMyCart} />} />
           <Route path='/login' element={<Login logMeIn={logMeIn} />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/shop/:itemID' element={<Item />} />
+          <Route path='/shop/:itemID' element={<Item user={user}/>} />
           <Route path='/shop/singleitem/:itemID' element={<SingleItem />} />
         </Routes>
 

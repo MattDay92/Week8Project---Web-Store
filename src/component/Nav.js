@@ -12,15 +12,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom'
 
-const pages = [<Link className='text-white' to="/shop">Shop</Link>, 
-    <Link className='text-white' to="/cart">Cart</Link>, 
-    <Link className='text-white' to="/login">Log In</Link>, 
-    <Link className='text-white' to="/signup">Sign Up</Link>];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function Nav() {
+function Nav(logMeOut) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const pages = [<Link className='text-white' to="/">Shop</Link>, 
+    <Link className='text-white' to="/cart">Cart</Link>, 
+    <Link className='text-white' to="/login">Log In</Link>, 
+    <Link className='text-white' to="/signup">Sign Up</Link>,
+    <Link className="text-white" to="/login" onClick={logMeOut}>Log Out</Link>];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
