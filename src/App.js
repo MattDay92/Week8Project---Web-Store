@@ -46,6 +46,8 @@ export default function App() {
     getCart(user)
   }, [user])
 
+  
+
 
   return (
     <div>
@@ -57,7 +59,7 @@ export default function App() {
           <Route path='/login' element={<Login logMeIn={logMeIn} />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/shop/:itemID' element={<Item user={user}/>} />
-          <Route path='/shop/singleitem/:itemID' element={<SingleItem />} />
+          <Route path='/shop/singleitem/:itemId' element={<SingleItem />} />
         </Routes>
 
       </BrowserRouter>
